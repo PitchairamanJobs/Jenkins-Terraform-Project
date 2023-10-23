@@ -25,7 +25,7 @@ pipeline {
         stage (" Action") {
         agent { label 'Node 1'}
             steps {
-                bat ('terraform apply --auto-approve') 
+                bat ('terraform destroy --auto-approve') 
            }
         }
     }
