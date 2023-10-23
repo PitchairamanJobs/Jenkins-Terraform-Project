@@ -25,8 +25,7 @@ pipeline {
         stage (" Action") {
         agent { label 'Node 1'}
             steps {
-                echo "Terraform action is --> ${action}"
-                bat ('terraform ${action} --auto-approve') 
+                bat ('terraform apply --auto-approve') 
            }
         }
     }
