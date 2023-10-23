@@ -7,7 +7,7 @@ pipeline {
           steps { 
           git credentialsId: 'Gitcredentials', url: 'https://github.com/PitchairamanJobs/Jenkins-Terraform-Project.git'
           }
-    
+      }
         stage ("terraform init") {
            agent { label 'Node 1'}
             steps {
