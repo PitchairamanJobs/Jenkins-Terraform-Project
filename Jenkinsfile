@@ -1,29 +1,32 @@
 pipeline {
-    agent any
+    agent none
 
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
+     stages {
+      stage('Git Checkout') {
+      agent { label 'Node 1'}
+          steps { 
+          git credentialsId: 'Gitcredentials', url: 'https://github.com/PitchairamanJobs/Jenkins-Terraform-Project.git'
+          }
     
         stage ("terraform init") {
+           agent { label 'Node 1'}
             steps {
-                sh ("terraform init -reconfigure") 
+                bat ("terraform init -reconfigure") 
             }
         }
         
         stage ("plan") {
+        agent { label 'Node 1'}
             steps {
-                sh ('terraform plan') 
+                bat ('terraform plan') 
             }
         }
 
         stage (" Action") {
+        agent { label 'Node 1'}
             steps {
                 echo "Terraform action is --> ${action}"
-                sh ('terraform ${action} --auto-approve') 
+                bat ('terraform ${action} --auto-approve') 
            }
         }
     }
